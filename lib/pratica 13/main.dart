@@ -1,50 +1,41 @@
+import 'package:aula/pratica%2013/lista.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(
+void main() {
+  Map<String, Widget Function(BuildContext)> rotas = {};
+
+  for(int i = 0; i < telasInfo.length; i++){
+    rotas['/${telasInfo[i]['rota']}'] = (_) => Tela(telasInfo[i]);
+  }
+
+  runApp(
       MaterialApp(
         initialRoute: '/',
-        routes: {
-          '/': (context) => PrimeiraTela(),
-          '/segunda': (context) => SegundaTela(),
-          '/terceira': (context) => TerceiraTela(),
-          '/quarta': (context) => QuartaTela()
-        },
+        routes: rotas,
       ),
     );
-
-class PrimeiraTela extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    Corpo corpo = Corpo('1');
-    Botao botao = Botao('segunda');
-    return Tela('Primeira Tela', corpo, botao);
-  }
 }
 
-class SegundaTela extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    Corpo corpo = Corpo('2');
-    Botoes botoes = Botoes('terceira');
-    return Tela('Segunda Tela', corpo, botoes);
-  }
-}
+class Tela extends StatelessWidget {
+  final Map<String, Object> _info;
 
-class TerceiraTela extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    Corpo corpo = Corpo('3');
-    Botoes botoes = Botoes('quarta');
-    return Tela('Terceira Tela', corpo, botoes);
-  }
-}
+  Tela(this._info);
 
-class QuartaTela extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Corpo corpo = Corpo('4');
-    Botoes botoes = Botoes('segunda');
-    return Tela('Quarta Tela', corpo, botoes);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${this._info['appTitle']}'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Corpo(this._info['numero']),
+            Botoes(this._info['anterior'],this._info['proximo']),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -72,63 +63,32 @@ class Corpo extends StatelessWidget {
   }
 }
 
-class Botao extends StatelessWidget {
-  final String proxima;
-  Botao(this.proxima);
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: Icon(Icons.navigate_next),
-      onPressed: () {
-        Navigator.pushNamed(context, '/${this.proxima}');
-      },
-    );
-  }
-}
-
 class Botoes extends StatelessWidget {
-  final String proxima;
-  Botoes(this.proxima);
+  final int _anterior, _proxima;
+  Botoes(this._anterior, this._proxima);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        ElevatedButton(
+    final List<Widget> children = [];
+
+    if(this._anterior != -1){
+      children.add(ElevatedButton(
           child: Icon(Icons.navigate_before),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamed(context, '/${telasInfo[this._anterior]['rota']}');
           },
-        ),
-        ElevatedButton(
+        ));
+    }
+
+    children.add(ElevatedButton(
           child: Icon(Icons.navigate_next),
           onPressed: () {
-            Navigator.pushNamed(context, '/${this.proxima}');
+            Navigator.pushNamed(context, '/${telasInfo[this._proxima]['rota']}');
           },
-        ),
-      ],
-    );
-  }
-}
+        ));
 
-class Tela extends StatelessWidget {
-  final String titulo;
-  final Widget corpo, navegacao;
-  Tela(this.titulo, this.corpo, this.navegacao);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('${this.titulo}'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            corpo,
-            navegacao,
-          ],
-        ),
-      ),
+    return Row(
+      mainAxisAlignment: this._anterior == -1 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
+      children: children,
     );
   }
 }

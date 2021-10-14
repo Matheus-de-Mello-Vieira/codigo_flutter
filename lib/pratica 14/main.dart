@@ -1,14 +1,18 @@
+import 'package:aula/lista.dart';
+import 'package:aula/tela.dart';
 import 'package:flutter/material.dart';
 
-import 'rotas.dart';
+void main() {
+  Map<String, Widget Function(BuildContext)> rotas = {};
 
-void main() => runApp(
+  for(int i = 0; i < telasInfo.length; i++){
+    rotas['/${telasInfo[i]['rota']}'] = (_) => Tela(telasInfo[i]);
+  }
+
+  runApp(
       MaterialApp(
         initialRoute: '/',
-        routes: {
-          '/': (context) => PrimeiraTela(),
-          '/segunda': (context) => SegundaTela(),
-          '/terceira': (context) => TerceiraTela(),
-        },
+        routes: rotas,
       ),
     );
+}

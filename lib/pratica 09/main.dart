@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-main() => runApp(_paginaInicial());
+main() => runApp(_PaginaInicial());
 
-class _paginaInicial extends StatefulWidget {
+class _PaginaInicial extends StatefulWidget {
   @override
-  _paginaInicialState createState() => _paginaInicialState();
+  _PaginaInicialState createState() => _PaginaInicialState();
 }
 
-class _paginaInicialState extends State<_paginaInicial> {
+class _PaginaInicialState extends State<_PaginaInicial> {
   int _numeroVezes = 0;
 
   void _click() {

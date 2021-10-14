@@ -21,11 +21,11 @@ class Home extends StatelessWidget {
             .map((foto) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
-                    child: Image.network(foto['imagem'] as String),
+                    child: Image.network(foto['imagem']),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (_) => descricao(foto)),
+                        MaterialPageRoute(builder: (_) => Descricao(foto)),
                       );
                     })))
             .toList(),
@@ -34,27 +34,27 @@ class Home extends StatelessWidget {
   }
 }
 
-class descricao extends StatelessWidget {
+class Descricao extends StatelessWidget {
   final Map<String, String> _info;
 
-  descricao(this._info);
+  Descricao(this._info);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(this._info['tituloAppBar'] as String),
+          title: Text(this._info['tituloAppBar']),
           backgroundColor: Colors.green,
         ),
         body: Column(children: [
           Text(
-            this._info['titulo'] as String,
+            this._info['titulo'],
             style: TextStyle(fontSize: 20),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              this._info['descricao'] as String,
+              this._info['descricao'],
               style: TextStyle(fontSize: 12),
             ),
           ),
