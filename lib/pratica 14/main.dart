@@ -1,6 +1,8 @@
-import 'package:aula/lista.dart';
-import 'package:aula/tela.dart';
+
+import 'package:aula/pratica%2014/tela.dart';
 import 'package:flutter/material.dart';
+
+import 'lista.dart';
 
 void main() {
   Map<String, Widget Function(BuildContext)> rotas = {};
