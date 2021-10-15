@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
             .map((foto) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
-                    child: Image.network(foto['imagem']),
+                    child: Image.network(foto['imagem']!),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -43,18 +43,18 @@ class Descricao extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(this._info['tituloAppBar']),
+          title: Text(this._info['tituloAppBar']!),
           backgroundColor: Colors.green,
         ),
         body: Column(children: [
           Text(
-            this._info['titulo'],
+            this._info['titulo']!,
             style: TextStyle(fontSize: 20),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              this._info['descricao'],
+              this._info['descricao']!,
               style: TextStyle(fontSize: 12),
             ),
           ),

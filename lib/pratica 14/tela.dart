@@ -16,8 +16,8 @@ class Tela extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Corpo(this._info['numero']),
-            Botoes(this._info['anterior'],this._info['proximo']),
+            Corpo(this._info['numero'] as String),
+            Botoes(this._info['anterior'] as int,this._info['proximo'] as int),
           ],
         ),
       ),

@@ -54,7 +54,7 @@ class RotaGenerica extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ArgumentosDaRota argumentos =
-        ModalRoute.of(context).settings.arguments as ArgumentosDaRota;
+        ModalRoute.of(context)!.settings.arguments as ArgumentosDaRota;
 
     if (argumentos.cotacao < 0) {
       final TextEditingController cotacaoController = TextEditingController();
