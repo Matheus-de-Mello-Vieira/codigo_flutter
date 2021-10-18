@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 void main() {
   Map<String, Widget Function(BuildContext)> rotas = {};
 
-  for(int i = 0; i < telasInfo.length; i++){
+  for (int i = 0; i < telasInfo.length; i++) {
     rotas['/${telasInfo[i]['rota']}'] = (_) => Tela(telasInfo[i]);
   }
 
   runApp(
-      MaterialApp(
-        initialRoute: '/',
-        routes: rotas,
-      ),
-    );
+    MaterialApp(
+      initialRoute: '/',
+      routes: rotas,
+    ),
+  );
 }
 
 class Tela extends StatelessWidget {
@@ -31,7 +31,7 @@ class Tela extends StatelessWidget {
         child: Column(
           children: [
             Corpo(this._info['numero'] as String),
-            Botoes(this._info['anterior'] as int,this._info['proximo'] as int),
+            Botoes(this._info['anterior'] as int, this._info['proximo'] as int),
           ],
         ),
       ),
@@ -70,24 +70,26 @@ class Botoes extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> children = [];
 
-    if(this._anterior != -1){
+    if (this._anterior != -1) {
       children.add(ElevatedButton(
-          child: Icon(Icons.navigate_before),
-          onPressed: () {
-            Navigator.pushNamed(context, '/${telasInfo[this._anterior]['rota']}');
-          },
-        ));
+        child: Icon(Icons.navigate_before),
+        onPressed: () {
+          Navigator.pushNamed(context, '/${telasInfo[this._anterior]['rota']}');
+        },
+      ));
     }
 
     children.add(ElevatedButton(
-          child: Icon(Icons.navigate_next),
-          onPressed: () {
-            Navigator.pushNamed(context, '/${telasInfo[this._proxima]['rota']}');
-          },
-        ));
+      child: Icon(Icons.navigate_next),
+      onPressed: () {
+        Navigator.pushNamed(context, '/${telasInfo[this._proxima]['rota']}');
+      },
+    ));
 
     return Row(
-      mainAxisAlignment: this._anterior == -1 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: this._anterior == -1
+          ? MainAxisAlignment.end
+          : MainAxisAlignment.spaceBetween,
       children: children,
     );
   }

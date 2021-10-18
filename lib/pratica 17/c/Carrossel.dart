@@ -12,11 +12,9 @@ class Carrossel extends StatefulWidget {
 class CarrosselState extends State<Carrossel> {
   int indice = 0;
 
-  void anterior() =>
-      setState(() => indice = (indice - 1) % imagens.length);
+  void anterior() => setState(() => indice = (indice - 1) % imagens.length);
 
-  void posterior() =>
-      setState(() => indice =(indice + 1) % imagens.length);
+  void posterior() => setState(() => indice = (indice + 1) % imagens.length);
 
   InkWell imagem() => InkWell(
         child: Stack(

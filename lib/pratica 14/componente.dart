@@ -33,24 +33,26 @@ class Botoes extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> children = [];
 
-    if(this._anterior != -1){
+    if (this._anterior != -1) {
       children.add(ElevatedButton(
-          child: Icon(Icons.navigate_before),
-          onPressed: () {
-            Navigator.pushNamed(context, '/${telasInfo[this._anterior]['rota']}');
-          },
-        ));
+        child: Icon(Icons.navigate_before),
+        onPressed: () {
+          Navigator.pushNamed(context, '/${telasInfo[this._anterior]['rota']}');
+        },
+      ));
     }
 
     children.add(ElevatedButton(
-          child: Icon(Icons.navigate_next),
-          onPressed: () {
-            Navigator.pushNamed(context, '/${telasInfo[this._proxima]['rota']}');
-          },
-        ));
+      child: Icon(Icons.navigate_next),
+      onPressed: () {
+        Navigator.pushNamed(context, '/${telasInfo[this._proxima]['rota']}');
+      },
+    ));
 
     return Row(
-      mainAxisAlignment: this._anterior == -1 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: this._anterior == -1
+          ? MainAxisAlignment.end
+          : MainAxisAlignment.spaceBetween,
       children: children,
     );
   }

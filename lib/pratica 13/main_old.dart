@@ -12,8 +12,6 @@ void main() => runApp(
       ),
     );
 
-
-
 class PrimeiraTela extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -28,4 +28,3 @@ const List<Map<String, Object>> telasInfo = [
     "rota": "quarta"
   }
 ];
-

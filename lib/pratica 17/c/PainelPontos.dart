@@ -15,7 +15,7 @@ class PainelPontos extends StatelessWidget {
         height: 8 + valorNumerico * 3,
         width: 8 + valorNumerico * 3,
         decoration: BoxDecoration(
-          color: ativa? Colors.amberAccent : Colors.white,
+          color: ativa ? Colors.amberAccent : Colors.white,
           borderRadius: BorderRadius.circular(4.0 + valorNumerico),
           boxShadow: [
             BoxShadow(
@@ -29,8 +29,8 @@ class PainelPontos extends StatelessWidget {
     );
   }
 
-
-  List <Widget> gerarPainelPontos () => new List<Widget>.generate(numeroPontos!, (i) => bolinha(i == indice));
+  List<Widget> gerarPainelPontos() =>
+      new List<Widget>.generate(numeroPontos!, (i) => bolinha(i == indice));
 
   @override
   Widget build(BuildContext context) {

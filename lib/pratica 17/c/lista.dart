@@ -7,7 +7,8 @@ const List<Map<String, String>> imagens = [
   {
     'arquivo': 'images/lente_convexa.jpg',
     'titulo': 'Lente convexa',
-    'descricao': 'A imagem vista através da lente está invertida pois está anterior ao foco, faça o experimento com uma lupa!'
+    'descricao':
+        'A imagem vista através da lente está invertida pois está anterior ao foco, faça o experimento com uma lupa!'
   },
   {
     'arquivo': 'images/lua_eh_lava.jpg',
@@ -27,6 +28,7 @@ const List<Map<String, String>> imagens = [
   {
     'arquivo': 'images/trem.jpg',
     'titulo': 'Trem fantasma',
-    'descricao': 'Diz a lenda que o fantasma que assombra o prédio da Una Aimores sequestra os maus estudantes e levam para outro mundo através deste trem.'
+    'descricao':
+        'Diz a lenda que o fantasma que assombra o prédio da Una Aimores sequestra os maus estudantes e levam para outro mundo através deste trem.'
   },
 ];

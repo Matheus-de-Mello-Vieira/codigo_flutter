@@ -54,7 +54,8 @@ class PrimeiraRota extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     RotaGenerica.caminhoDaRota,
-                    arguments: ArgumentosDaRota("Segunda rota", Colors.blue.shade900),
+                    arguments:
+                        ArgumentosDaRota("Segunda rota", Colors.blue.shade900),
                   );
                 },
               ),
@@ -70,7 +71,8 @@ class PrimeiraRota extends StatelessWidget {
                   Navigator.pushNamed(
                     context,
                     RotaGenerica.caminhoDaRota,
-                    arguments: ArgumentosDaRota("Terceira rota", Colors.purple.shade900),
+                    arguments: ArgumentosDaRota(
+                        "Terceira rota", Colors.purple.shade900),
                   );
                 },
               ),
@@ -135,6 +137,6 @@ class RotaGenerica extends StatelessWidget {
 class ArgumentosDaRota {
   String texto;
   Color color;
-  
+
   ArgumentosDaRota(this.texto, this.color);
 }

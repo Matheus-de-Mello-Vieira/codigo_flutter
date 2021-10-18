@@ -92,14 +92,13 @@ class RotaGenerica extends StatelessWidget {
         title: Text("Graus Fahrenheit"),
       ),
       body: Center(
-        child: 
-          Text(
-            'R\$: ${argumentos.reais.toStringAsFixed(2)} = US\$ ${(argumentos.reais / argumentos.cotacao).toStringAsFixed(2)}',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.yellow,
-            ),
+        child: Text(
+          'R\$: ${argumentos.reais.toStringAsFixed(2)} = US\$ ${(argumentos.reais / argumentos.cotacao).toStringAsFixed(2)}',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.yellow,
           ),
+        ),
       ),
     );
   }
