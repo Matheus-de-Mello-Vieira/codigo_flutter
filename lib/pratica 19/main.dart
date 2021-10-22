@@ -30,8 +30,15 @@ class PrimeiraRota extends StatefulWidget {
 
 class PrimeiraRotaState extends State<PrimeiraRota> {
   Transporte transporte = transportes[0];
-  void selecionar(Transporte transporteEscolhido) =>
-      setState(() => this.transporte = transporteEscolhido);
+
+  void selecionar(Transporte transporteEscolhido) {
+    setState(() => this.transporte = transporteEscolhido);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SegundaRota(this.transporte)),
+    );
+  }
+
   List<PopupMenuItem<Transporte>> getListaItensMenu() {
     List<PopupMenuItem<Transporte>> lista;
     lista = transportes.skip(2).map(
@@ -53,7 +60,8 @@ class PrimeiraRotaState extends State<PrimeiraRota> {
           icon: Icon(Icons.video_collection),
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SegundaRota(this.transporte)),
+            MaterialPageRoute(
+                builder: (context) => SegundaRota(this.transporte)),
           ),
           tooltip: 'Coleção de Vídeos',
         ),

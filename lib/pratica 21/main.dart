@@ -103,8 +103,16 @@ class SegundaRotaState extends State<SegundaRota> {
   }
 }
 
-List<Widget> Info(Map<String, String> dados, bool quebra_linha) {
-  return <Widget>[
+class Info extends StatelessWidget {
+  Map<String, String> dados;
+  bool quebraLinha;
+
+  Info(this.dados, this.quebraLinha);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
     Padding(
       padding: EdgeInsets.all(4),
       child: Image(
@@ -128,7 +136,7 @@ List<Widget> Info(Map<String, String> dados, bool quebra_linha) {
       padding: EdgeInsets.all(4),
       child: Text(
         dados['descricao'] as String,
-        maxLines: quebra_linha ? 100 : 1,
+        maxLines: quebraLinha ? 100 : 1,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
             fontSize: 14, color: Colors.black, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
@@ -145,7 +153,9 @@ List<Widget> Info(Map<String, String> dados, bool quebra_linha) {
             decoration: TextDecoration.none),
       ),
     )
-  ];
+  ]
+    );
+  }
 }
 
 class Cartao extends StatelessWidget {
@@ -163,7 +173,7 @@ class Cartao extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            ...Info(this._dados, false),
+            Info(this._dados, false),
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -205,7 +215,7 @@ class Descricao extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ...Info(this._dados, true),
+          Info(this._dados, true),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

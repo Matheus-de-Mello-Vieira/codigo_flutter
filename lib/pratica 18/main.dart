@@ -55,7 +55,7 @@ class PrimeiraRota extends StatelessWidget {
                     context,
                     RotaGenerica.caminhoDaRota,
                     arguments:
-                        ArgumentosDaRota("Segunda rota", Colors.blue.shade900),
+                        ArgumentosDaRota("Segunda rota", Colors.black),
                   );
                 },
               ),
@@ -117,7 +117,8 @@ class RotaGenerica extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Graus Celsius: ${argumentos.texto}',
+                argumentos.texto,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.red,

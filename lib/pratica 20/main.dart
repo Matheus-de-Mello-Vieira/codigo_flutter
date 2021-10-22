@@ -49,7 +49,7 @@ class HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.flight_takeoff),
-            label: 'Aerio',
+            label: 'Aéreo',
           ),
         ],
         currentIndex: this.indice,
@@ -61,9 +61,9 @@ class HomeState extends State<Home> {
 }
 
 class Imagem extends StatelessWidget {
-  final String imagem_url;
+  final String imagemUrl;
 
-  const Imagem(this.imagem_url);
+  const Imagem(this.imagemUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class Imagem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(7),
         image: DecorationImage(
-          image: AssetImage(imagem_url),
+          image: AssetImage(imagemUrl),
           fit: BoxFit.cover,
         ),
         boxShadow: [
