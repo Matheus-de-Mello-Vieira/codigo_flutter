@@ -89,7 +89,7 @@ class PrimeiraRotaState extends State<PrimeiraRota> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TerceiraRota(this.produtos[indice]),
+                    builder: (context) => TerceiraRota(this.produtos[indice], indice),
                   ),
                 );
               },

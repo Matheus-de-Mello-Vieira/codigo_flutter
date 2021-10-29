@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'Produto.dart';
+import 'QuartaRota.dart';
 
 class TerceiraRota extends StatelessWidget {
   final Produto produto;
-  TerceiraRota(this.produto);
+  final int indice;
+
+  TerceiraRota(this.produto, this.indice);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +51,18 @@ class TerceiraRota extends StatelessWidget {
                   ),
                 ),
               ),
+              Padding(
+            padding: const EdgeInsets.fromLTRB(100, 50, 100, 50),
+            child: ElevatedButton(
+              child: Text("Alterar"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QuartaRota(this.produto, this.indice))
+                );
+              },
+            ),
+          ),
               ButtonBar(
                 children: [
                   TextButton(
