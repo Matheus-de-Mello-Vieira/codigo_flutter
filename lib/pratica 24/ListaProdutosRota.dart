@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'Produto.dart';
-import 'SegundaRota.dart';
-import 'TerceiraRota.dart';
+import 'AdicionarProdutoRota.dart';
+import 'DescricaoProdutoRota.dart';
 
-class PrimeiraRota extends StatefulWidget {
+class ListaProdutosRota extends StatefulWidget {
   @override
-  PrimeiraRotaState createState() => PrimeiraRotaState();
+  ListaProdutosRotaState createState() => ListaProdutosRotaState();
 }
 
-class PrimeiraRotaState extends State<PrimeiraRota> {
+class ListaProdutosRotaState extends State<ListaProdutosRota> {
   final List<Produto> produtos = <Produto>[];
   void adicionarProdutoNaLista(Produto produto) {
     setState(() => produtos.insert(0, produto));
@@ -89,9 +89,16 @@ class PrimeiraRotaState extends State<PrimeiraRota> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TerceiraRota(this.produtos[indice], indice),
+                    builder: (context) =>
+                        DescricaoProdutoRota(this.produtos[indice], indice),
                   ),
-                );
+                ).then((produto) {
+                  if (produto != Null) {
+                    this.setState(() {
+                      this.produtos[indice] = produto;
+                    });
+                  }
+                });
               },
               onLongPress: () {
                 confirmarExclusao(context, indice);
@@ -104,7 +111,7 @@ class PrimeiraRotaState extends State<PrimeiraRota> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SegundaRota()),
+            MaterialPageRoute(builder: (context) => AdicionarProdutoRota()),
           ).then(
             (novoProduto) {
               this.adicionarProdutoNaLista(novoProduto);

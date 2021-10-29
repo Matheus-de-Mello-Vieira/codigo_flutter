@@ -1,56 +1,48 @@
 import 'package:flutter/material.dart';
 
+import 'ListaDeImagens.dart';
 import 'Menu.dart';
 import 'Produto.dart';
 
-class QuartaRota extends StatefulWidget {
-  final Produto produto;
-  final int index;
-
-  QuartaRota(this.produto, this.index);
-
-  @override
-  State<QuartaRota> createState() => _QuartaRotaState();
+class AdicionarProdutoRota extends StatefulWidget {
+  AdicionarProdutoRotaState createState() {
+    return AdicionarProdutoRotaState();
+  }
 }
 
-class _QuartaRotaState extends State<QuartaRota> {
-
-  TextEditingController? nomeController;
-  TextEditingController? descricaoController = TextEditingController();
-  TextEditingController? precoController = TextEditingController();
-
-  ItemMenu? itemSelecionado;
-  List<DropdownMenuItem<ItemMenu>>? listaItensMenu;
+class AdicionarProdutoRotaState extends State<AdicionarProdutoRota> {
+  Imagem? imagemSelecionada;
+  late List<DropdownMenuItem<Imagem>> listaImagensMenu;
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController descricaoController = TextEditingController();
+  final TextEditingController precoController = TextEditingController();
 
   @override
   void initState() {
-    listaItensMenu = Menu.getListaItens();
-    itemSelecionado = listaItensMenu![this.widget.index].value;
-
-    descricaoController = TextEditingController(text: widget.produto.descricao);
-    nomeController = TextEditingController(text: widget.produto.nome);
-    precoController = TextEditingController(text: widget.produto.preco.toStringAsFixed(2));
-
+    listaImagensMenu = Menu.getListaItens();
+    imagemSelecionada = listaImagensMenu[0].value;
     super.initState();
   }
 
-  alterarItemSelecionado(ItemMenu? itemSelecionado) {
-    setState(() => this.itemSelecionado = itemSelecionado);
+  alterarItemSelecionado(Imagem? itemSelecionado) {
+    setState(() => this.imagemSelecionada = itemSelecionado);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Atualizar produto"),
+        title: Text('Adicionar Produto'),
       ),
-      body: Column(
+      body: ListView(
+        shrinkWrap: true, //Ocupar apenas o espaço necessário.
+        padding: new EdgeInsets.only(left: 25, right: 25),
         children: [
           Padding(
             padding: EdgeInsets.all(8),
             child: DropdownButton(
-              value: itemSelecionado,
-              items: listaItensMenu,
+              value: this.imagemSelecionada,
+              items: this.listaImagensMenu,
               onChanged: this.alterarItemSelecionado,
               icon: Icon(Icons.arrow_downward),
               isExpanded: true,
@@ -63,13 +55,13 @@ class _QuartaRotaState extends State<QuartaRota> {
               ),
             ),
           ),
-        Padding(
+          Padding(
             padding: EdgeInsets.all(8),
             child: TextField(
-              controller: nomeController,
+              controller: this.nomeController,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                  onPressed: () => nomeController!.clear(),
+                  onPressed: () => this.nomeController.clear(),
                   icon: Icon(Icons.clear),
                 ),
                 border: OutlineInputBorder(),
@@ -80,10 +72,10 @@ class _QuartaRotaState extends State<QuartaRota> {
           Padding(
             padding: EdgeInsets.all(8),
             child: TextField(
-              controller: descricaoController,
+              controller: this.descricaoController,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                  onPressed: () => descricaoController!.clear(),
+                  onPressed: () => this.descricaoController.clear(),
                   icon: Icon(Icons.clear),
                 ),
                 border: OutlineInputBorder(),
@@ -94,11 +86,11 @@ class _QuartaRotaState extends State<QuartaRota> {
           Padding(
             padding: const EdgeInsets.all(8),
             child: TextField(
-              controller: precoController,
+              controller: this.precoController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
-                  onPressed: () => precoController!.clear(),
+                  onPressed: () => this.precoController.clear(),
                   icon: Icon(Icons.clear),
                 ),
                 border: OutlineInputBorder(),
@@ -112,15 +104,16 @@ class _QuartaRotaState extends State<QuartaRota> {
               child: Icon(Icons.add),
               onPressed: () {
                 Produto produto = Produto(
-                  url: this.widget.produto.url,
-                  nome: nomeController!.text,
-                  descricao: descricaoController!.text,
-                  preco: double.parse(precoController!.text),
+                  imagem: this.imagemSelecionada!,
+                  nome: this.nomeController.text,
+                  descricao: this.descricaoController.text,
+                  preco: double.parse(this.precoController.text),
                 );
                 Navigator.pop(context, produto);
               },
             ),
-          ),]
+          ),
+        ],
       ),
     );
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'PrimeiraRota.dart';
+import 'ListaProdutosRota.dart';
 
 main() => runApp(
       MaterialApp(
-        home: PrimeiraRota(),
+        home: ListaProdutosRota(),
         debugShowCheckedModeBanner: false,
       ),
     );

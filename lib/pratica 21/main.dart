@@ -104,57 +104,58 @@ class SegundaRotaState extends State<SegundaRota> {
 }
 
 class Info extends StatelessWidget {
-  Map<String, String> dados;
-  bool quebraLinha;
+  final Map<String, String> dados;
+  final bool quebraLinha;
 
   Info(this.dados, this.quebraLinha);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-    Padding(
-      padding: EdgeInsets.all(4),
-      child: Image(
-        image: NetworkImage(dados['url']!),
-        height: 200,
-        width: 400,
+    return Column(children: <Widget>[
+      Padding(
+        padding: EdgeInsets.all(4),
+        child: Image(
+          image: NetworkImage(dados['url']!),
+          height: 200,
+          width: 400,
+        ),
       ),
-    ),
-    Padding(
-      padding: EdgeInsets.all(4),
-      child: Text(
-        dados['titulo']!,
-        style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-            decoration: TextDecoration.none),
+      Padding(
+        padding: EdgeInsets.all(4),
+        child: Text(
+          dados['titulo']!,
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              decoration: TextDecoration.none),
+        ),
       ),
-    ),
-    Padding(
-      padding: EdgeInsets.all(4),
-      child: Text(
-        dados['descricao'] as String,
-        maxLines: quebraLinha ? 100 : 1,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
+      Padding(
+        padding: EdgeInsets.all(4),
+        child: Text(
+          dados['descricao'] as String,
+          maxLines: quebraLinha ? 100 : 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.normal,
+              decoration: TextDecoration.none),
+        ),
       ),
-    ),
-    Padding(
-      padding: EdgeInsets.all(4),
-      child: Text(
-        'R\$ ${dados['preco']!}',
-        style: TextStyle(
-            fontSize: 20,
-            color: Colors.red,
-            fontWeight: FontWeight.bold,
-            decoration: TextDecoration.none),
-      ),
-    )
-  ]
-    );
+      Padding(
+        padding: EdgeInsets.all(4),
+        child: Text(
+          'R\$ ${dados['preco']!}',
+          style: TextStyle(
+              fontSize: 20,
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+              decoration: TextDecoration.none),
+        ),
+      )
+    ]);
   }
 }
 

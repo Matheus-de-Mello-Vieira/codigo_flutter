@@ -1,19 +1,38 @@
 import 'package:flutter/material.dart';
 
 import 'Produto.dart';
-import 'QuartaRota.dart';
+import 'AlterarProdutoRota.dart';
 
-class TerceiraRota extends StatelessWidget {
+class DescricaoProdutoRota extends StatefulWidget {
   final Produto produto;
   final int indice;
 
-  TerceiraRota(this.produto, this.indice);
+  DescricaoProdutoRota(this.produto, this.indice);
+
+  @override
+  State<DescricaoProdutoRota> createState() => _DescricaoProdutoRotaState();
+}
+
+class _DescricaoProdutoRotaState extends State<DescricaoProdutoRota> {
+  late Produto produto;
+
+  @override
+  void initState() {
+    this.produto = this.widget.produto;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Produto'),
+        leading: new IconButton(
+          icon: new Icon(Icons.ac_unit),
+          onPressed: () => Navigator.of(context).pop(this.produto),
+        ),
       ),
+      
       body: ListView(
         children: [
           Column(
@@ -52,28 +71,32 @@ class TerceiraRota extends StatelessWidget {
                 ),
               ),
               Padding(
-            padding: const EdgeInsets.fromLTRB(100, 50, 100, 50),
-            child: ElevatedButton(
-              child: Text("Alterar"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => QuartaRota(this.produto, this.indice))
-                );
-              },
-            ),
-          ),
+                padding: const EdgeInsets.fromLTRB(100, 50, 100, 50),
+                child: ElevatedButton(
+                  child: Text("Alterar"),
+                  onPressed: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    AlterarProdutoRota(this.produto)))
+                        .then((produto) => this.setState(() {
+                              this.produto = produto;
+                            }));
+                  },
+                ),
+              ),
               ButtonBar(
                 children: [
                   TextButton(
                     child: Text(
-                      'Voltar para a Primeira Rota',
+                      'Voltar',
                       style: TextStyle(
                         color: Colors.purple[900],
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(context, this.produto);
                     },
                   ),
                 ],

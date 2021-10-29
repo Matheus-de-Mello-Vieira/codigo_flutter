@@ -99,9 +99,9 @@ class Corpo extends StatelessWidget {
             trailing: Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => TerceiraRota(produtos[indice]))
-                  );
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => TerceiraRota(produtos[indice])));
             },
           ),
         );
@@ -210,10 +210,10 @@ class TerceiraRota extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(this.produto.nome),
-        ),
-        body: Column(
+      appBar: AppBar(
+        title: Text(this.produto.nome),
+      ),
+      body: Column(
         children: [
           Text(this.produto.nome),
           Padding(
@@ -225,13 +225,13 @@ class TerceiraRota extends StatelessWidget {
             ),
           ),
           Text(this.produto.descricao),
-          Text("${this.produto.preco.toStringAsFixed(2)}",
-              style: roxoGrande),
+          Text("${this.produto.preco.toStringAsFixed(2)}", style: roxoGrande),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              TextButton(onPressed: () => Navigator.pop(context),
-               child: Text("Voltar a primeira rota"))
+              TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Voltar a primeira rota"))
             ],
           )
         ],
