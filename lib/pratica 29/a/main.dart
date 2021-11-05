@@ -23,7 +23,7 @@ class HomeState extends State<Home> {
   String localidade = '';
   String uf = '';
   TextEditingController cepController = TextEditingController();
-  Future? buscarDadosViaCep() async {
+  Future buscarDadosViaCep() async {
     String url = 'https://viacep.com.br/ws/' + cepController.text + '/json/';
     http.Response response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -33,44 +33,43 @@ class HomeState extends State<Home> {
     }
   }
 
-  void buscar() {
-    Future respose = buscarDadosViaCep();
-    print("cccc");
-    if (respose.body) {
-      
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text('CEP incorreto!'),
-        action: SnackBarAction(
-          label: 'Fechar',
-          onPressed: () {
-            setState(() => cep = '');
-          },
-        )));
-    } else {
-      print("aaaaa");
-      respose.then((resposta) => setState(
-        if(resposta.body.contains("erro")){
-          print("bbbb");
-      setState(() {
+  void lerJson(http.Response resp) {
+    Map<String, dynamic> objeto = jsonDecode(resp.body);
+    cep = objeto['cep'];
+    logradouro = objeto['logradouro'];
+    complemento = objeto['complemento'];
+    bairro = objeto['bairro'];
+    localidade = objeto['localidade'];
+    uf = objeto['uf'];
+  }
+
+  void mensagemErro() {
+    setState(
+      () {
         cep = 'informado incorretamente';
         logradouro = '';
         complemento = '';
         bairro = '';
         localidade = '';
         uf = '';
-      });
-        }
-            () {
-                Map<String, dynamic> objeto = jsonDecode(resposta.body);
-                cep = objeto['cep'];
-                logradouro = objeto['logradouro'];
-                complemento = objeto['complemento'];
-                bairro = objeto['bairro'];
-                localidade = objeto['localidade'];
-                uf = objeto['uf'];
-            },
-          ));
-    }
+      },
+    );
+    final snackBar = SnackBar(
+      content: const Text('CEP incorreto!'),
+      action: SnackBarAction(
+        label: 'Fechar',
+        onPressed: () {
+          setState(() => cep = '');
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void buscar() {
+    buscarDadosViaCep()
+        .then((resposta) => setState(() => lerJson(resposta)))
+        .onError((error, stackTrace) => mensagemErro());
   }
 
   Widget getInput() {
